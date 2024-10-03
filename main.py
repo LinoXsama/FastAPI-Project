@@ -7,6 +7,8 @@ from typing import Optional
 
 app = FastAPI()
 
+my_posts = [{"title": "London", "content": "Beautiful city !", "id": 1}, {"title": "London", "content": "Beautiful city !", "id": 1}]
+
 class Post(BaseModel):
    title: str
    content: str
@@ -19,7 +21,7 @@ async def root():
 
 @app.get("/posts")
 def get_posts():
-   return {"data": "This is your posts"}
+   return {"data": my_posts}
 
 @app.post("/posts")
 def create_post(post_data: Post):
