@@ -9,14 +9,6 @@ from random import randrange
 
 app = FastAPI()
 
-my_posts = [
-   {
-      "title": "London", "content": "Beautiful city !", "id": 1
-   }, 
-   {
-      "title": "London", "content": "Beautiful city !", "id": 5
-   }
-]
 
 # Définition du modèle auquel doit répondre un post !
 class Post(BaseModel):
@@ -24,6 +16,24 @@ class Post(BaseModel):
    content: str
    published: bool = True
    rating: Optional[int] = None
+
+my_posts = [
+   {
+      "title": "London",
+      "content": "Beautiful city !",
+      "id": 1
+   }, 
+   {
+      "title": "Moscow",
+      "content": "Cloudy city !",
+      "id": 5
+   }
+]
+
+def find_post(id):
+   for p in my_posts:
+      if p["id"] == id:
+         return p
 
 # Route racine / !
 @app.get("/")
@@ -38,8 +48,8 @@ def get_posts():
 # Route /posts/{id} permettant d'obtenir un post en fonction de son id !
 @app.get("/posts/{id}")
 def get_post(id):
-   print(id)
-   return {"post_detail": f"Here is post {id}"}
+   post = find_post(int(id))
+   return {"post_detail": post}
 
 # Route /posts permettant de créer un post !
 @app.post("/posts")
