@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.params import Body
 
 from pydantic import BaseModel
@@ -53,8 +53,10 @@ def get_latest_post():
 
 # Route /posts/{id} permettant d'obtenir un post en fonction de son id !
 @app.get("/posts/{id}")
-def get_post(id: int):
+def get_post(id: int, response: Response):
    post = find_post(int(id))
+   if not post:
+      response.status_code = 404 
    return {"post_detail": post}
 
 # Route /posts permettant de créer un post !
