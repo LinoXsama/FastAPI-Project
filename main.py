@@ -45,6 +45,12 @@ async def root():
 def get_posts():
    return {"data": my_posts}
 
+# Route permettant d'obtenir le post le plus récent !
+@app.get("/posts/latest")
+def get_latest_post():
+   post = my_posts[len(my_posts) - 1]
+   return {"detail": post}
+
 # Route /posts/{id} permettant d'obtenir un post en fonction de son id !
 @app.get("/posts/{id}")
 def get_post(id: int):
