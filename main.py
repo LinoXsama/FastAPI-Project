@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, status
 from fastapi.params import Body
 
 from pydantic import BaseModel
@@ -56,7 +56,7 @@ def get_latest_post():
 def get_post(id: int, response: Response):
    post = find_post(int(id))
    if not post:
-      response.status_code = 404 
+      response.status_code = status.HTTP_404_NOT_FOUND 
    return {"post_detail": post}
 
 # Route /posts permettant de créer un post !
