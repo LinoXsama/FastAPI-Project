@@ -11,10 +11,14 @@ app = FastAPI()
 
 my_posts = [
    {
-      "title": "London", "content": "Beautiful city !", "id": 1
+      "title": "London",
+      "content": "Beautiful city !",
+      "id": 1
    }, 
    {
-      "title": "London", "content": "Beautiful city !", "id": 5
+      "title": "Moscow",
+      "content": "Cloudy city !",
+      "id": 5
    }
 ]
 
