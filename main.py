@@ -47,7 +47,7 @@ def get_posts():
 
 # Route /posts/{id} permettant d'obtenir un post en fonction de son id !
 @app.get("/posts/{id}")
-def get_post(id):
+def get_post(id: int):
    post = find_post(int(id))
    return {"post_detail": post}
 
